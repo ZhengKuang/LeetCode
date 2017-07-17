@@ -1,42 +1,43 @@
 public class ArrayToQueue {
-    private int index;
+    private int first;
     private int size;
+    private int last;
     private int iniSize;
     private int[] array;
 
     public ArrayToQueue(int initSize){
         this.iniSize=initSize;
         array=new int[iniSize];
+        first=0;
+        last=0;
     }
     public void push(int val){
-        int value=size+1;
-        if(iniSize-value<0){
+        if(size==array.length){
             throw new RuntimeException("the size if full!");
         }
-        array[(index+size)%iniSize]=val;
+        array[last]=val;
+        last=last==array.length-1?0:last+1;
         size++;
     }
 
     public Integer pop(){
-        int value=size-1;
-        if(value<0){
+        if(size==0){
             throw new RuntimeException("the size is empty, you cannot pop");
         }
         else{
             size--;
-            int popInt=index;
-            index=(index+1)%iniSize;
+            int popInt=first;
+            first=first==array.length-1?0:first+1;
             return array[popInt];
         }
     }
 
     public Integer peek(){
-        int value=size;
-        if(value==0) {
+        if(size==0) {
             return null;
         }
         else{
-            return array[index];
+            return array[first];
         }
     }
     public static void main(String args[]){
@@ -46,7 +47,6 @@ public class ArrayToQueue {
         atq.push(2);
         atq.push(3);
         atq.push(4);
-        atq.push(4);
         System.out.println(atq.pop());
         System.out.println(atq.peek());
         System.out.println(atq.pop());
@@ -55,7 +55,6 @@ public class ArrayToQueue {
         System.out.println(atq.pop());
         atq.push(5);
         System.out.println(atq.peek());
-        System.out.println(atq.pop());
         System.out.println(atq.pop());
 
 
