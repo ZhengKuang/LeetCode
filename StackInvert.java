@@ -6,11 +6,9 @@ public class StackInvert {
         if(myint==null){
             return a;
         }
-        else{
-            invertStack(a);
-            a.push(myint);
-            return a;
-        }
+        invertStack(a);
+        a.push(myint);
+        return a;
     }
 
     public Integer getAndRemoveFirstElement(Stack<Integer> a){
@@ -20,10 +18,8 @@ public class StackInvert {
         if(first==null){
             return element;
         }
-        else{
-            a.push(element);
-            return first;
-        }
+        a.push(element);
+        return first;
 
     }
 
