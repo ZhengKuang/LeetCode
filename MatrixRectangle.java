@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 public class MatrixRectangle {
     public static int maxRecSize(int[][] map){
         int rowSize=map.length;
@@ -19,22 +21,27 @@ public class MatrixRectangle {
     }
     public static int getMax(int[] help){
         int columnSize=help.length;
+        Stack<Integer> stack=new Stack<>();
         int max=0;
         for(int i=0;i<help.length;i++){
-            int left=0,right=0,start=i;
-            while(start>0){
-                if(help[--start]>=help[i]) left++;
-            }
-            start=i;
-            while(start<help.length-1){
-                if(help[++start]>=help[i]) right++;
-            }
-            max=max>=(left+right+1)* help[i]?max:(left+right+1)* help[i];
+          while(!stack.isEmpty()&&help[stack.peek()]>=help[i]){
+              int index=stack.pop();
+              int value=stack.empty()?i*help[index]:(i-1-stack.peek())*help[index];
+              max=Math.max(value,max);
+          }
+          stack.push(i);
+        }
+        int lastindex=stack.peek();
+        while(!stack.isEmpty()){
+            int index=stack.pop();
+            int value=stack.empty()?help.length*help[index]:(lastindex-stack.peek())*help[index];
+            max=Math.max(value,max);
+            lastindex=index;
         }
         return max;
     }
     public static void main(String args[]){
-        int[][] map={ { 1, 0, 1, 1 }, { 1, 1, 1, 1 }, { 1, 1, 1, 0 },{1,1,1,1}};
+        int[][] map={ { 1, 0, 1, 1 }, { 1, 1, 1, 1 }, { 1, 1, 1, 0 },{ 1, 1, 1, 1}};
         int a=map.length;
         int b=map[0].length;
         System.out.println(maxRecSize(map));;
