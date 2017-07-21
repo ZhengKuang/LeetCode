@@ -31,12 +31,14 @@ public class MatrixRectangle {
           }
           stack.push(i);
         }
-        int lastindex=stack.peek();
-        while(!stack.isEmpty()){
-            int index=stack.pop();
-            int value=stack.empty()?help.length*help[index]:(lastindex-stack.peek())*help[index];
-            max=Math.max(value,max);
-            lastindex=index;
+        if(!stack.isEmpty()) {
+            int lastindex = stack.peek();
+            while (!stack.isEmpty()) {
+                int index = stack.pop();
+                int value = stack.empty() ? help.length * help[index] : (lastindex - stack.peek()) * help[index];
+                max = Math.max(value, max);
+                lastindex = index;
+            }
         }
         return max;
     }
