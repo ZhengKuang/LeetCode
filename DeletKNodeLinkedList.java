@@ -1,4 +1,4 @@
-public class DeletKNodeLinkedListAnswer {
+public class DeletKNodeLinkedList {
     private static class LinkedListNode{
         public LinkedListNode next;
         public int value;
