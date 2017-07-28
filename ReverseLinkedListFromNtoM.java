@@ -21,7 +21,7 @@ public class ReverseLinkedListFromNtoM {
         if (n != 1) {
             while ((index + 1) != n) {
                 cur = cur.next;
-                index = index + 1;
+                index++ ;
             }
             header = cur;
             cur = cur.next;
