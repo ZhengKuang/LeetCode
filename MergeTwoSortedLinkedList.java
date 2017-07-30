@@ -29,24 +29,20 @@ public class MergeTwoSortedLinkedList {
     public static LinkedListNode InsertNode(LinkedListNode headnode, LinkedListNode insertNode) {
         LinkedListNode cur = headnode.next;
         LinkedListNode last = headnode;
+        if (last.value >= insertNode.value) {
+            insertNode.next = headnode;
+            return insertNode;
+        }
         while (cur != null) {
             if (last.value < insertNode.value && insertNode.value <= cur.value) {
-                last.next = insertNode;
-                insertNode.next = cur;
-                return headnode;
+                break;
             }
             last = cur;
             cur = cur.next;
         }
-        if (insertNode.value > last.value) {
-            last.next = insertNode;
-            insertNode.next = null;
-            return headnode;
-        }
-        else{
-            insertNode.next=headnode;
-            return insertNode;
-        }
+        last.next = insertNode;
+        insertNode.next = cur;
+        return headnode;
     }
 
     public static void printOutCome(LinkedListNode node) {
