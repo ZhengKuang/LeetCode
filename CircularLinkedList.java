@@ -9,7 +9,6 @@ public class CircularLinkedList {
     }
 
     public static LinkedListNode insertNumber(LinkedListNode head, int num) {
-        LinkedListNode newhead = head;
         LinkedListNode cur = head;
         LinkedListNode mynode = new LinkedListNode(num);
         if (cur == null) {
@@ -17,24 +16,18 @@ public class CircularLinkedList {
             head.next = head;
             return head;
         }
-        if (cur.next == cur) {
-            cur.next = mynode;
-            mynode.next = cur;
-            newhead = cur.value <= num ? cur : mynode;
-            return newhead;
-        }
-        while (cur.next != head) {
-            LinkedListNode next = cur.next;
-            if (cur.value < num && num <= next.value) {
-                cur.next = mynode;
-                mynode.next = next;
-                return head;
+        LinkedListNode pre=head;
+        cur=head.next;
+        while (cur != head) {
+            if (pre.value < num && num <= cur.value) {
+                break;
             }
+            pre=cur;
             cur = cur.next;
         }
-        cur.next=mynode;
-        mynode.next=head;
-        return mynode;
+        pre.next=mynode;
+        mynode.next=cur;
+        return head.value<num?head:mynode;
     }
 
 
