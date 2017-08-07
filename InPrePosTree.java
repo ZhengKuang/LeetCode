@@ -75,10 +75,10 @@ public class InPrePosTree {
         while (!treeStack.isEmpty()) {
             Tree node = treeStack.pop();
             System.out.println("the value is " + node.value);
-            if (node.left != null) {
+            if (node.right != null) {
                 treeStack.push(node.right);
             }
-            if (node.right != null) {
+            if (node.left != null) {
                 treeStack.push(node.left);
             }
         }
