@@ -49,6 +49,26 @@ public class InPrePosTree {
         System.out.println("____________");
     }
 
+    public static void porstOrderUnRecur2(Tree head) {
+        Stack<Tree> treeStack1 = new Stack<>();
+        treeStack1.push(head);
+        Tree c=null;
+        while (!treeStack1.isEmpty()) {
+            c = treeStack1.peek();
+            if(c.left!=null&&head!=c.left&&head!=c.right){
+                treeStack1.push(c.left);
+            }
+            else if (c.right != null&&head!=c.right) {
+                treeStack1.push(c.right);
+            }
+            else  {
+                System.out.println("the value is :" +treeStack1.pop().value);
+                head=c;
+            }
+        }
+        System.out.println("____________");
+    }
+
     public static void preOrderUnRecur(Tree root) {
         Stack<Tree> treeStack = new Stack<>();
         treeStack.push(root);
@@ -66,6 +86,8 @@ public class InPrePosTree {
 
     }
 
+
+
     public static void main(String[] args) {
         Tree tree = new Tree(1);
         tree.left = new Tree(2);
@@ -80,5 +102,7 @@ public class InPrePosTree {
         inOrderUnRecur(tree);
 
         porstOrderUnRecur(tree);
+
+        porstOrderUnRecur2(tree);
     }
 }
