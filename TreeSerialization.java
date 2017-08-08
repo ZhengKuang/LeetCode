@@ -40,13 +40,53 @@ public class TreeSerialization {
         return head;
     }
 
+    public static String serializbylevel(Tree head){
+        LinkedList<Tree> treeList=new LinkedList<Tree>();
+        treeList.offer(head);
+        String s="";
+        while(!treeList.isEmpty()){
+            Tree tmp=treeList.poll();
+            if(tmp!=null) {
+                treeList.offer(tmp.left);
+                treeList.offer(tmp.right);
+                s+=tmp.value+"!";
+            }
+            else{
+                s+="#!";
+
+            }
+        }
+        return s;
+    }
+
+    public static Tree reconstructByLevel(String s){
+        String[] values=s.split("!");
+        Tree[] list=new Tree[values.length];
+        for(int i=0;i<values.length;i++){
+            if(values[i].equals("#")){
+                list[i]=null;
+            }
+            else{
+                list[i]=new Tree(Integer.valueOf(values[i]));
+            }
+        }
+        for(int i=0,j=1;j<=list.length-1;i++){
+            list[i].left=list[j++];
+            list[i].right=list[j++];
+        }
+        return list[0];
+
+    }
+
 
     public static void main(String[] args){
         Tree node=new Tree(1);
         node.left=new Tree(2);
         node.right=new Tree(3);
         node.left.left=new Tree(4);
-        String s= serialByPre(node);
-        Tree reTree=reconstruct(s);
+        String s= serializbylevel(node);
+        Tree reTree=reconstructByLevel(s);
+        int i=0;
+
     }
 }
