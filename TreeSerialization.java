@@ -84,8 +84,9 @@ public class TreeSerialization {
         node.left=new Tree(2);
         node.right=new Tree(3);
         node.left.left=new Tree(4);
-        String s= serializbylevel(node);
-        Tree reTree=reconstructByLevel(s);
+        String s= serialByPre(node);
+        System.out.println(s);
+        Tree reTree=reconstruct(s);
         int i=0;
 
     }
