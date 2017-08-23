@@ -1,51 +1,66 @@
-
 public class HeapSort {
-    public static void heapOne(int[] array,int n, int index){
-        int i=index;
-        int left=0;
-        int right=0;
-        for(;i<=(n-1)/2;){
-            left=i*2+1>n-1?n-1:i*2+1;
-            right=i*2+2>n-1?n-1:i*2+2;
-            if(array[i]>array[left]||array[i]>array[right]){
-                if(array[left]>array[right]){
-                    swap(array,i,right);
-                    i=i*2+2;
-                }
-                else{
-                    swap(array,i,left);
-                    i=i*2+1;
-                }
+    public static void heapInsert(int[] array, int index){
+        while(index!=0){
+            int parent=(index-1)/2;
+            if(array[index]<array[parent]){
+                swap(array,index,parent);
+                index=parent;
             }
             else{
                 break;
             }
-
         }
     }
 
-    public static void swap(int[] array,int i,int j){
-            int tmp=array[i];
-            array[i]=array[j];
-            array[j]=tmp;
+    public static void swap(int[] array,int index,int parent){
+        int tmp=array[index];
+        array[index]=array[parent];
+        array[parent]=tmp;
     }
 
-    public static void heapSort(int [] array){
-        for(int i=(array.length-1)/2;i>=0;i--){
-            heapOne(array,array.length,i);
-        }
-        for(int i=array.length-1;i>=0;i--){
-            int length=i+1;
-            System.out.println(array[0]);
-            array[0]=array[i];
-            heapOne(array,length,0);
-
+    public static void heapify(int[] array,int index,int heapSize){
+        int left=index*2+1;
+        int right=index*2+2;
+        int largest=index;
+        while(left<heapSize){
+            if(array[largest]>array[left]){
+                largest=left;
+            }
+            if(right<heapSize&&array[largest]>array[right]){
+                largest=right;
+            }
+            if(index!=largest){
+                swap(array,index,largest);
+            }
+            else{
+                break;
+            }
+            index=largest;
+            left=index*2+1;
+            right=index*2+2;
         }
     }
 
+    public static int[] heapSort(int[] arr){
+        for(int i=0;i<arr.length;i++){
+            heapInsert(arr,i);
+        }
+        int b[]=new int[arr.length];
+        int size=arr.length;
+        for(int i=0;i<b.length;i++){
+            b[i]=arr[0];
+            arr[0]=arr[size-1];
+            size--;
+            heapify(arr,0,size);
+        }
+        return b;
+    }
     //big root heap
      public static void main(String args[]){
         int[] a={6,10,2,5,7,1,4,8,3,9};
-        heapSort(a);
+        int[] b=heapSort(a);
+        for(int i=0;i<b.length;i++){
+            System.out.print(b[i]);
+        }
      }
 }
