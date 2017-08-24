@@ -1,41 +1,39 @@
 import java.util.Stack;
 
-public class GetMinStack{
+public class GetMinStack {
     private Stack<Integer> dataStack;
     private Stack<Integer> minStack;
 
-    public GetMinStack(){
-        dataStack=new Stack<>();
-        minStack=new Stack<>();
+    public GetMinStack() {
+        dataStack = new Stack<>();
+        minStack = new Stack<>();
     }
 
-    public void push(Integer val){
+    public void push(Integer val) {
         dataStack.push(val);
-        if(minStack.empty()){
+        if (minStack.empty()) {
             minStack.push(val);
-        }
-        else {
-            if(val<=minStack.peek()){
+        } else {
+            if (val <= minStack.peek()) {
                 minStack.push(val);
-            }
-            else{
+            } else {
                 minStack.push(getMin());
             }
         }
     }
 
-    public int pop(){
+    public int pop() {
         minStack.pop();
         return dataStack.pop();
 
     }
 
-    public int getMin(){
+    public int getMin() {
         return minStack.peek();
     }
 
 
-    public static void main (String args[]) {
+    public static void main(String args[]) {
         GetMinStack myStack = new GetMinStack();
         myStack.push(5);
         myStack.push(4);
