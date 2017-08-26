@@ -33,10 +33,8 @@ public class CountingSort {
         }
         return renum;
     }
-
     public static void main(String args[]){
         int[] a={3,2,1,5,4,7,8,9,6,10,5,4,3};
-
         System.out.println(Arrays.toString(countingSort(a)));
     }
 }
