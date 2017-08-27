@@ -1,5 +1,6 @@
 public class Test {
     public static void main(String args[]){
-        System.out.println((double)(3-4)/2);
+        char a='9';
+        System.out.println(a-'9');
     }
 }
