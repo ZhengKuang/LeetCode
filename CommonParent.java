@@ -54,6 +54,7 @@ public class CommonParent {
             }
             n=sc.nextInt();
         }
+        sc.close();
 
     }
 }
