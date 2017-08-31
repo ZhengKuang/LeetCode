@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class QuickSelect {
     public static void quickselect(int[]a,int k){
         Select(a,0,a.length-1,k);
@@ -25,8 +29,19 @@ public class QuickSelect {
     }
 
 
-    public static void main(String[] args){
-        int a[]={6,2};
-        quickselect(a,2);
+    public static void main(String[] args) throws FileNotFoundException{
+       Scanner sc=new Scanner(new File("QuickSelect.txt"));
+       int n=sc.nextInt();
+       int []a=new int[n];
+       while(n!=-1){
+           for(int i=0;i<n;i++){
+               a[i]=sc.nextInt();
+           }
+           int loop=sc.nextInt();
+           for(int i=0;i<loop;i++){
+               quickselect(a,sc.nextInt());
+           }
+           n=sc.nextInt();
+       }
     }
 }
