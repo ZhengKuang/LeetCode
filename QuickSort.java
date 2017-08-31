@@ -33,7 +33,7 @@ public class QuickSort {
     }
 
     public static void main(String args[]){
-        int a[]={1,2,3,7,10,7,8};
+        int a[]={2,1};
         quickSort(a,0,a.length-1);
         for(int i=0;i<a.length;i++){
             System.out.print(a[i]);
