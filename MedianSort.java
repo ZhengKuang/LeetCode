@@ -4,8 +4,8 @@ import java.util.PriorityQueue;
 
 public class MedianSort {
     private static class MedianHolder {
-        private static PriorityQueue<Integer> maxHeap = new PriorityQueue<>(new MaxComparator());
-        private static PriorityQueue<Integer> minHeap = new PriorityQueue<>(new MinComparator());
+        private static PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(2,new MaxComparator());
+        private static PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>(2,new MinComparator());
 
 
         public void addNumber(int number) {

@@ -1,6 +1,9 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 
 public class CommonParent {
@@ -30,6 +33,9 @@ public class CommonParent {
     }
 
 
+    public CommonParent() {
+    }
+
     public static void main(String args[]) throws FileNotFoundException{
         Scanner sc=new Scanner(new File("CommonParent.txt"));
         int n=sc.nextInt();
@@ -55,6 +61,11 @@ public class CommonParent {
             n=sc.nextInt();
         }
         sc.close();
+        Set<Integer> beginIndex=new HashSet<Integer>();
+        ArrayList<Integer> tuple=new ArrayList<>();
+    }
+
+    public static void testMethod(int i){
 
     }
 }

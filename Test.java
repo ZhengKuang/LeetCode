@@ -27,7 +27,7 @@ class Test{
                     ops.add(next);
                     break;
                 case ')':
-                    while(ops.peek()!= '('){
+                  while(ops.peek()!= '('){
                         nums.add( cal( nums.pop(), nums.pop(), ops.pop()) );
                     }
                     ops.pop();

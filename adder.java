@@ -1,12 +1,14 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 
 public class adder {
-    public static void add(String line){
+    public static void add (String line) {
         Stack<Integer> nums=new Stack<>();
-        Stack<Character>  operation=new Stack<>();;
+        Stack<Character>  operation=new Stack<>();
+        Deque<Integer> que=new LinkedList<>();
+        HashMap<Integer,Integer> set=new HashMap<>();
+        que.pollFirst();
         int number=0;
         for(int i=0;i<line.length();i++){
             char ch=line.charAt(i);
@@ -29,6 +31,16 @@ public class adder {
             nums.push((cal(nums.pop(),nums.pop(),operation.pop())));
         }
         System.out.println(nums.pop());
+/*        switch (nums){
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                break;
+        }*/
     }
 
     public static int cal(int number1,int number2,char operation){

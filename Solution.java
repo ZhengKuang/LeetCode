@@ -1,53 +1,84 @@
-import java.io.*;
 import java.util.*;
 
-class Quicker{
-    int select(int[] nums, int k){
-        System.out.println("the k is "+k);
-        return select(nums, 0, nums.length-1, k-1);
-    }
-
-    int select(int[] nums, int start, int end, int k){
-
-        int divider = nums[end];
-        int left = start;
-        for(int i=start;i<end;++i) {
-            System.out.println("the i is "+i+" the left is "+left+" the devider is "+divider+" the k is "+k+"\n");
-            if (nums[i] < divider) swap(nums, i, left++);
-            System.out.println(Arrays.toString(nums));
-        }
-
-        if(left == k) return nums[end];
-        if(left <k ) return select(nums, left, end-1, k-(left-start)-1);//?? if left == 0?
-        else return select(nums, start, left-1, k);
-    }
-
-    void swap(int[] nums, int i, int j){
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
-    }
-}
-
-public class Solution {
-    public static void main(String[] args) throws FileNotFoundException{
-        Scanner in = new Scanner(new File("input.txt"));
-
-        int n = in.nextInt();
-
-        Quicker quicker = new Quicker();
-
-        while(n!=-1){
-            int[] nums = new int[n];
-            for(int i=0;i<n;++i) nums[i] = in.nextInt();
-
-            int m = in.nextInt();
-            while(m--!=0){
-                System.out.println(quicker.select(nums, in.nextInt()));
+class Solution {
+    public static List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
+        List<List<String>> rlist=new ArrayList<>();
+        HashMap<String,Integer> pos=new HashMap<>();
+        Set<String> toremove=new HashSet<>();
+        Set<String> wordset=new HashSet<>();
+        for(String s:wordList) wordset.add(s);
+        Set<String> explored=new HashSet<>();
+        explored.add(beginWord);
+        wordset.remove(beginWord);
+        ArrayList<String> tmp=new ArrayList<>();
+        tmp.add(beginWord);
+        rlist.add(tmp);
+        pos.put(beginWord,pos.size());
+        int distance=1;
+        while(!explored.contains(endWord)) {
+            Set<String> toAdd = new HashSet<>();
+            for (String each : explored) {
+                for (int j = 0; j < each.length(); j++) {
+                    char[] array = each.toCharArray();
+                    for (char c = 'a'; c <= 'z'; c++) {
+                        array[j] = c;
+                        String word = new String(array);
+                        if (wordset.contains(word)) {
+                            int index=pos.get(each);
+                            ArrayList<String> copy=new ArrayList<>();
+                            for(String s:rlist.get(index)){
+                                copy.add(s);
+                            }
+                            copy.add(word);
+                            pos.put(word,rlist.size());
+                            rlist.add(copy);
+                            toremove.add(word);
+                            toAdd.add(word);
+                        }
+                    }
+                }
             }
-            n = in.nextInt();
+            for(String s:toremove){
+                wordset.remove(s);
+            }
+            if (toAdd.size() == 0) return new ArrayList<>();
+            explored = toAdd;
+            distance++;
         }
+        List<List<String>> cleanList=new ArrayList<>();
+        for(List<String> myeach:rlist){
+            if(myeach.size()==distance-1){
+                String word=myeach.get(myeach.size()-1);
+                int count=0;
+                for(int i=0;i<word.length();i++){
+                    if(word.charAt(i)!=endWord.charAt(i)) count++;
+                }
+                if(count==1) myeach.add(endWord);
+                cleanList.add(myeach);
+            }
+        }
+        return cleanList;
+    }
 
-        in.close();
+
+
+    public static void main(String args[]){
+        char tmp='a';
+        System.out.println((int)('a'));
+        String s1="red";
+        String s2="tax";
+        List<String> arraylist=new ArrayList<String>();
+        //["hot","dot","dog","lot","log","cog"]
+        arraylist.add("ted");
+        arraylist.add("tex");
+        arraylist.add("red");
+        arraylist.add("tax");
+        arraylist.add("tad");
+        arraylist.add("den");
+        arraylist.add("rex");
+        arraylist.add("pee");
+        List<List<String>> rlist=findLadders(s1,s2,arraylist);
+        int i=1;
+
     }
 }
