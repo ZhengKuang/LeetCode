@@ -1,4 +1,5 @@
 import java.util.Stack;
+import java.util.TreeMap;
 
 public class InPrePosTree {
     public static class Tree {
@@ -96,6 +97,8 @@ public class InPrePosTree {
         tree.left.right = new Tree(5);
         tree.right.left = new Tree(6);
         tree.right.right = new Tree(7);
+        TreeMap<Integer,Integer> map=new TreeMap<>();
+        map.lastKey();
 
         preOrderUnRecur(tree);
 

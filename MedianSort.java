@@ -14,6 +14,7 @@ public class MedianSort {
             } else {
                 if (number < maxHeap.peek()) {
                     maxHeap.add(number);
+                    maxHeap.toString();
                 } else {
                     minHeap.add(number);
                 }
