@@ -14,6 +14,8 @@ class MedianoftwoSortedArray{
         if(astart>=A.length) return B[bstart+k-1];
         if(bstart>=B.length) return A[astart+k-1];
 
+        if(k==1) return Math.min(A[astart],B[bstart]);
+
         int amid=Integer.MAX_VALUE;
         int bmid=Integer.MAX_VALUE;
         if(astart+k/2-1<A.length) amid=A[astart+k/2-1];
