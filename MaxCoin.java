@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by zhengkuang on 11/11/17.
  */
@@ -19,12 +23,19 @@ public class MaxCoin{
                 }
             }
         }
+        Set<String> e=new HashSet<>();
+        e.add("hello");
+        for(String s:e){
+            System.out.print(s);
+        }
         return dp[0][nums.length-1];
+
     }
 
     public static void main(String args[]){
         int[] nums=new int[]{3,1,5,8};
         MaxCoin mx=new MaxCoin();
+        System.out.println("dog".substring(1));
         System.out.println(mx.maxCoins(nums));
     }
 }

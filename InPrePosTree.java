@@ -88,6 +88,34 @@ public class InPrePosTree {
     }
 
 
+    public static void post3(Tree head) {
+        Stack<Tree> treeStack1 = new Stack<>();
+        Tree cur=head;
+        while(cur!=null){
+            treeStack1.push(cur);
+            cur=cur.left;
+        }
+        Tree tmp;
+        while (!treeStack1.isEmpty()) {
+            tmp = treeStack1.peek();
+            if(tmp.right!=null&&tmp.right!=cur){
+                tmp=tmp.right;
+                treeStack1.push(tmp);
+                tmp=tmp.left;
+                while(tmp!=null){
+                    treeStack1.push(tmp);
+                    tmp=tmp.left;
+                }
+            }
+            else{
+                cur=treeStack1.pop();
+                System.out.println(cur.value);
+            }
+        }
+        System.out.println("____________");
+    }
+
+
 
     public static void main(String[] args) {
         Tree tree = new Tree(1);
@@ -97,15 +125,16 @@ public class InPrePosTree {
         tree.left.right = new Tree(5);
         tree.right.left = new Tree(6);
         tree.right.right = new Tree(7);
+        tree.left.right.left=new Tree(8);
         TreeMap<Integer,Integer> map=new TreeMap<>();
-        map.lastKey();
+        post3(tree);
 
-        preOrderUnRecur(tree);
+//        preOrderUnRecur(tree);
 
-        inOrderUnRecur(tree);
+//        inOrderUnRecur(tree);
 
-        porstOrderUnRecur(tree);
+//        porstOrderUnRecur(tree);
 
-        porstOrderUnRecur2(tree);
+//        porstOrderUnRecur2(tree);
     }
 }
