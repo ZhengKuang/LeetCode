@@ -30,10 +30,13 @@ public class longestPathinTree {
         for(int i=0;i<A.length;i++){
             nodes[i]=new Node(A[i],i+1);
         }
+
+        //[1,1,2,3,4,5]
+        //[1,2,1,3,1,4]
         //get its neighbor
         for(int j=0;j<B.length;j+=2){
-            nodes[B[j]].kids.add(nodes[B[j+1]]);
-            nodes[B[j+1]].kids.add(nodes[B[j]]);
+            nodes[B[j]-1].kids.add(nodes[B[j+1]-1]);
+            nodes[B[j+1]-1].kids.add(nodes[B[j]-1]);
         }
         int[] gmax=new int[1];
         gmax[0]=0;
@@ -79,9 +82,9 @@ public class longestPathinTree {
     }
 
     public static void main(String[] args){
-        int[] A=new int[]{1,1,1,1,1,1,1,1};
-        int[] B=new int[]{7,8,1,2,1,3,1,4,4,5,4,6,5,7};
-
+        int[] A=new int[]{1,1,1,2,2};
+        int[] B=new int[]{1,2,1,3,2,4,2,5};
+/*
         int[] val1 = {4, 4, 4, 1, 5, 5};
         int[] edge1 = {0, 1, 2, 1, 1, 3, 3, 4, 4, 5};
         int[] val2 = {0, 4, 2, 2, 4, 4, 1, 4, 4, 4, 4, 4, 4, 3, 3};
@@ -94,16 +97,16 @@ public class longestPathinTree {
 
         int[] val4 = {2, 2, 2, 2, 2, 2, 2};
         int[] edge4 = {0, 1, 1, 2, 2, 3, 3, 4, 2, 5, 2, 6};
-
+*/
         longestPathinTree sl=new longestPathinTree();
-  //      System.out.println(sl.solution(A,B));
+        System.out.println(sl.solution(A,B));
    //     System.out.println("DFS time: "+sl.count);
-
+/*
         System.out.println(sl.solution(val2, edge2));
         System.out.println(sl.solution(val3, edge3));
         System.out.println(sl.solution(val4, edge4));
         System.out.println(sl.solution(val1, edge1));
-
+*/
     }
 
     class Solution {

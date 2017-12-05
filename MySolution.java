@@ -13,9 +13,10 @@ class Node{
 }
 
 class MySolution {
-
+    Queue<String> q=new LinkedList<>();
     int max;
     public static void main(String[] args) {
+        HashMap<String,Integer> map=new HashMap<>();
         int[] val1 = {4, 4, 4, 1, 5, 5};
         int[] edge1 = {0, 1, 2, 1, 1, 3, 3, 4, 4, 5};
         int[] val2 = {0, 4, 2, 2, 4, 4, 1, 4, 4, 4, 4, 4, 4, 3, 3};

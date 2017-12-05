@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Scanner;
 
 /**
  * Created by zhengkuang on 11/18/17.
@@ -8,6 +10,7 @@ public class DecodeKey {
     public static void main(String args[]) {
         char[] s1 = new String("Your friend, Alice").toCharArray();
         char[] s2 = new String("Atvt hrqgse, Cnikg").toCharArray();
+        HashSet<String> set=new HashSet<>();
         int[] dif = new int[s1.length];
         for (int i = 0; i < dif.length; i++) {
             dif[i]=(int)s2[i]-(int)s1[i];
@@ -25,7 +28,7 @@ public class DecodeKey {
             rspace[i]=rs.get(i);
             s=s+String.valueOf(rspace[i]);
         }
-
+        System.out.println(s);
         //find duplicate
         System.out.println(Dup("12341"));
     }

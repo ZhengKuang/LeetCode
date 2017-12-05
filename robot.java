@@ -54,5 +54,7 @@ public class robot {
         int numParts=6;
         int[][] order=new int[][]{{0,2},{1,2},{2,4},{3,4},{4,5}};
         rb.printOrder(numParts,order);
+        System.out.println();
+        System.out.println(1.0/6.0);
     }
 }

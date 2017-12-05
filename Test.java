@@ -1,7 +1,10 @@
 import java.io.*;
+import java.text.DateFormat;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
-class Test{
+class Test implements Comparable{
 
     HashMap<Character, Integer> prioriy;
 
@@ -74,7 +77,7 @@ class Test{
     }
 
     public static void main(String[] args) throws FileNotFoundException{
-        Scanner in = new Scanner(new File("adder2.txt"));
+/*        Scanner in = new Scanner(new File("adder2.txt"));
 
         Test cal = new Test();
 
@@ -84,6 +87,53 @@ class Test{
             equation = in.nextLine();
         }
         in.close();
+        */
+ /*       String s="a(sssss)b";
+        System.out.println(s.indexOf(')'));
+        System.out.println(s.substring(s.indexOf('(')+1,s.indexOf(')')));
+        String startDate="27/09/2016:05:22";
+        DateFormat df=new SimpleDateFormat("dd/MM/yyyy:hh:mm");
+        Date date;
+        try{
+            date=df.parse(startDate);
+            String k=df.format(date);
+            System.out.println(k);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+*/
+
+        String s="123456";
+        System.out.println(s.substring(0,6));
+        try {
+            //inputformater.parse("27/Sep/2016:05:22:00 +0000")
+            SimpleDateFormat inputformater=new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z");
+            inputformater.setTimeZone(TimeZone.getTimeZone("GMT"));
+            Date date = inputformater.parse("27/Sep/2016:05:22:00 +0300");
+            Date date2 = inputformater.parse("27/Sep/2016:05:23:00 +0300");
+            long elapsed= date2.getTime()-date.getTime();
+
+       //     Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+       //     cal.setTime(date);
+            System.out.println(date);
+            System.out.println(inputformater.format(date));
+            System.out.println(elapsed);
+      /*      SimpleDateFormat outputfomart=new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z");
+            System.out.println(outputfomart.format(cal.getTime()));
+            Format formatter = new SimpleDateFormat("Z");
+            String s1 = formatter.format(new Date());
+            System.out.println(s1);
+            */
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }
 
