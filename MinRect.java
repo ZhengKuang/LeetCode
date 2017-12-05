@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
@@ -12,6 +13,8 @@ public class MinRect {
     public static int minRect(int[][] matrix){
         int min=Integer.MAX_VALUE;
         HashSet<String> set=new HashSet<>();
+        ArrayList<String> list=new ArrayList<>(set);
+
         for(int i=0;i<matrix.length;i++){
             set.add(matrix[i][0]+","+matrix[i][1]);
         }
@@ -29,4 +32,5 @@ public class MinRect {
         }
         return min;
     }
+
 }
