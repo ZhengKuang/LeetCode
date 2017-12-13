@@ -50,6 +50,32 @@ public class ShortedCommonSuperString {
         return ans;
     }
 
+    public static int lengthOfLongestSubstringKDistinct(String str, int k) {
+        if (str == null || str.isEmpty() || k == 0) return 0;
+        TreeMap<Integer, Character> lastOccurrence = new TreeMap<>();
+        Map<Character, Integer> inWindow = new HashMap<>();
+        int j = 0, max = 1;
+        for (int i = 0; i < str.length(); i++) {
+            char in = str.charAt(i);
+            //update or add in's position in both maps
+            if (inWindow.containsKey(in)) {
+                lastOccurrence.remove(inWindow.get(in));
+            }
+            inWindow.put(in, i);
+            lastOccurrence.put(i, in);
+            // make sure the size satisfies the requirement
+            if (inWindow.size() > k) {
+                int first = lastOccurrence.firstKey();
+                char out = lastOccurrence.get(first);
+                inWindow.remove(out);
+                lastOccurrence.remove(first);
+                j = first + 1;
+            }
+            max = Math.max(max, i - j + 1);
+        }
+        return max;
+    }
+
     public static void recursive(boolean[] visited, int index, List<List<Integer>> ans, List<Integer> curList,int[] array){
         if(visited[index]) return;
         visited[index]=true;
@@ -72,8 +98,10 @@ public class ShortedCommonSuperString {
 
 
     public static void main(String args[]){
-        String[] list=new String[]{"AAA","AAB","ABA","ABB","BAA","BAB","BBA","BBB"};
-        System.out.println(scs(list));
-        System.out.println(scs(list).length());
+    //    String[] list=new String[]{"AAA","AAB","ABA","ABB","BAA","BAB","BBA","BBB"};
+    //    System.out.println(scs(list));
+    //    System.out.println(scs(list).length());
+        ShortedCommonSuperString sc=new ShortedCommonSuperString();
+        System.out.println(lengthOfLongestSubstringKDistinct("abaccc",2));
     }
 }
