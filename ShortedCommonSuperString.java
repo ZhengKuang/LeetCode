@@ -52,7 +52,33 @@ public class ShortedCommonSuperString {
 
     public static int lengthOfLongestSubstringKDistinct(String str, int k) {
         if (str == null || str.isEmpty() || k == 0) return 0;
-        TreeMap<Integer, Character> lastOccurrence = new TreeMap<>();
+        TreeMap<Integer, Character> lastOccur=new TreeMap<>();
+        HashMap<Character,Integer> c_index=new HashMap<>();
+        int max=0;
+        int j=0;
+        for(int i=0;i<str.length();i++){
+            char c=str.charAt(i);
+            if(c_index.containsKey(c)){
+                lastOccur.remove(c_index.get(c));
+            }
+            c_index.put(c,i);
+            lastOccur.put(i,c);
+            //abcdef
+            //1->a,2->b,3->c
+            if(c_index.size()>k){
+                int first=lastOccur.firstKey();
+                c_index.remove(lastOccur.get(first));
+                lastOccur.remove(first);
+                j=first+1;
+            }
+            max=Math.max(max,i-j+1);
+        }
+        return max;
+        //bigO(n*logk)
+
+
+
+/*        TreeMap<Integer, Character> lastOccurrence = new TreeMap<>();
         Map<Character, Integer> inWindow = new HashMap<>();
         int j = 0, max = 1;
         for (int i = 0; i < str.length(); i++) {
@@ -74,6 +100,7 @@ public class ShortedCommonSuperString {
             max = Math.max(max, i - j + 1);
         }
         return max;
+        */
     }
 
     public static void recursive(boolean[] visited, int index, List<List<Integer>> ans, List<Integer> curList,int[] array){
