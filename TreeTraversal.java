@@ -111,5 +111,11 @@ class TreeTraversal{
         System.out.println("----------------");
         postOrderIter(n1);
         System.out.println("----------------");
+        ArrayList<Integer> al=new ArrayList<>();
+        System.out.println(al.size());
+        Iterator<Integer> it=al.iterator();
+        System.out.println(it.hasNext());
+        System.out.println(it.next());
+
     }
 }
